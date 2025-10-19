@@ -1,3 +1,6 @@
+server:
+  port: 9090
+
 spring:
   application:
     name: taskrunner
@@ -5,6 +8,12 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/taskdb
       database: taskdb
+  profiles:
+    active: k8s # <-- This activates the @Profile("k8s")
 
-server:
-  port: 9090
+# Configuration for the Kubernetes executor
+task:
+  k8s:
+    namespace: "default" # Or whatever namespace your pod is in
+    pod: "task-runner-pod " # You MUST set this to a valid pod name
+    # container: "my-container" # Optional: only if your pod has multiple containers

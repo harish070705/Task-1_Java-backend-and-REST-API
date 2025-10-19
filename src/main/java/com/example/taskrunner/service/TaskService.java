@@ -16,7 +16,7 @@ public class TaskService {
     private final ExecutorService executor;
 
     public TaskService(TaskRepository repository,
-            @Qualifier("localExecutor") ExecutorService executor) { 
+            @Qualifier("k8sExecutor") ExecutorService executor) { 
         this.repository = repository;
         this.executor = executor;
     }

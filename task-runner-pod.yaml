@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-runner-pod
+spec:
+  containers:
+    - name: task-runner
+      image: alpine
+      command: ["sleep", "3600"]
+      tty: true

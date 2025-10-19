@@ -1,4 +1,5 @@
 package com.example.taskrunner.service;
+
 import com.example.taskrunner.model.TaskExecution;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.dsl.ExecListener;
@@ -11,7 +12,7 @@ import java.time.Instant;
 import java.util.concurrent.CountDownLatch;
 
 @Service("k8sExecutor")
-@Profile("k8s") 
+@Profile("k8s")
 public class KubernetesExecutorService implements ExecutorService {
 
     private final KubernetesClient client;
@@ -62,9 +63,9 @@ public class KubernetesExecutorService implements ExecutorService {
                         latch.countDown();
                     }
                 })
-                .exec("bash", "-lc", command);
+                .exec("sh", "-c", command);
 
-        latch.await(); 
+        latch.await();
         String output = baos.toString("UTF-8");
         Instant end = Instant.now();
 
